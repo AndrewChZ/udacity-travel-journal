@@ -1,9 +1,6 @@
 // import "./style.css";
 import "./style.scss";
+import img from './img/bg-image.png'
 console.log("Load successful");
 
-const fancyFunc = () => {
-    return [1, 2];
-  };
-  
-  const [a, b] = fancyFunc();
+export { img };
