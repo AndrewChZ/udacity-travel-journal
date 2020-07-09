@@ -2,7 +2,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-
   module: {
     rules: [
       {
@@ -15,12 +14,12 @@ module.exports = {
         use: ["babel-loader"]
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
-        loader: 'file-loader',
-        options: {
-          outputPath: 'img',
-          name: "bg-image.png"
-        },
+        test: /\.(png|jpe?g|gif|svg)$/,
+          loader: 'file-loader',
+          options: {
+            outputPath: 'img',
+            name: 'background-image.png',
+          },
       },
     ],
   },

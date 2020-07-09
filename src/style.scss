@@ -1,6 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Karla:weight@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Muli:wght@400;700&display=swap');
 
-$font: "Karla", sans-serif;
+$header-font: "Merriweather", serif;
+$body-font: "Muli", sans-serif;
+$color-white: #FFFFFF;
+$color-orange: #EE6C4D;
 $primary-color: #3e6f9e;
 
 html, body {
@@ -8,30 +11,65 @@ html, body {
   padding: 0;
 }
 
-body {
-  font-family: $font;
-  color: $primary-color;
-  background: gray;
-  display: flex;
-  // background: url(./bg-image.jpg);
-  height: 100%;
-  min-height: 100%;
-  // background-position: center;
-  // height: 200rem;
-  // background-color: red;
+h1, h2 {
+  font-family: $header-font;
+  color: $color-white;
+}
 
-  #background-image {
+h2 {
+  font-size: 3rem;
+  margin: 1.5rem;
+}
+
+body {
+  font-family: $body-font;
+  color: $primary-color;
+  // background: gray;
+  display: flex;
+  height: 100vh;
+  min-height: 100vh;
+  background: linear-gradient(0deg, rgba(24, 35, 35, 0.5), rgba(24, 35, 35, 0.5)), url(img/bg-image.png) center center no-repeat fixed;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+
+  #search-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    // background-color: #ffffff;
+    // margin: 1.375rem;
     
 
-    img {
-      width: 100%;
-      height: 100%;
-      // background: url(./bg-image.jpg);
-      // display: block;
-      position: absolute;
-      // bottom: 0%;
-      // left: 0%;
-      z-index: -1;
+    form {
+      display: flex;
+      background-color: $color-white;
+      border-radius: 5.375rem;
+      justify-content: space-between;
+      margin: 1.25rem 0;
+      // width: 100%;
+      // flex-grow: 1;
+
+      input {
+        margin: 1rem;
+        font-family: $body-font;
+      }
+
+      input[type=submit]  {
+        flex-grow: 2;
+        margin: 0.75rem;
+        padding: 0.625rem 2.625rem;
+        background-color: $color-orange;
+        border-radius: 3.75rem;
+        color: white;
+        font-size: 1rem;
+        border: 0px;
+      }
+
+      input[type=text]  {
+        flex-grow: 3;
+        margin: 0 1.25rem;
+      }
     }
   }
 }

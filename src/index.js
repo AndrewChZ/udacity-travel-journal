@@ -1,6 +1,9 @@
 // import "./style.css";
 import "./style.scss";
-import img from './img/bg-image.png'
+import bgImg from './img/bg-image.png'
+import icnFlightArrive from './img/icn_flight-arrive.png'
+import icnFlightDepart from './img/icn_flight-depart.png'
+import icnLocation from './img/icn_location.png'
 console.log("Load successful");
 
-export { img };
+export { bgImg, icnFlightArrive, icnFlightDepart, icnLocation };
