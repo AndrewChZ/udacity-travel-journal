@@ -1,9 +1,200 @@
-@import url("https://fonts.googleapis.com/css?family=Karla:weight@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Muli:wght@400;700&display=swap');
 
-$font: "Karla", sans-serif;
+$header-font: "Merriweather", serif;
+$body-font: "Muli", sans-serif;
+$color-black: #293241;
+$color-white: #FFFFFF;
+$color-orange: #EE6C4D;
+$color-dark-orange: #D25638;
+$color-grey-dark: #293241;
+$color-grey-light: #9FAFC5;
+$color-grey-lighter: #D2D2D2;
+$color-grey-lightest: #F7F9FB;
 $primary-color: #3e6f9e;
 
-body {
-  font-family: $font;
-  color: $primary-color;
+html, body {
+  margin: 0;
+  padding: 0;
 }
+
+h1, h2 {
+  font-family: $header-font;
+  color: $color-white;
+}
+
+h1 {
+  font-size: 6rem; 
+  font-weight: 200;
+  color: $color-orange;
+  margin: 0 0 0.25rem 0;
+}
+
+h2 {
+  font-size: 3rem;
+  margin: 1.5rem;
+}
+
+input {
+  margin: 1rem 1rem 1rem 0;
+  font-family: $body-font;
+  font-size: 1rem;
+  border: 0px;
+  color: $color-grey-dark;
+}
+
+input:focus {
+  outline: none;
+}
+
+input[type=submit]  {
+  // flex-grow: auto;
+  // flex-basis: auto;
+  margin: 0.75rem;
+  padding: 0.625rem 2.625rem;
+  background-color: $color-orange;
+  border-radius: 3.75rem;
+  color: $color-white;
+}
+
+input[type=submit]:active {
+  background-color: $color-dark-orange;
+}
+
+input[type=text]  {
+  flex-grow: 3;
+}
+
+input[type=text]::placeholder  {
+  color: $color-grey-light;
+}
+
+#check-button {
+  width: 14rem;
+  margin: 2.5rem 0 0 0;
+  text-align: center;
+}
+
+body {
+  font-family: $body-font;
+  color: $primary-color;
+  background: $color-grey-lightest;
+  
+
+  #bg-image {
+    display: flex;
+    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(0deg, rgba(24, 35, 35, 0.5), rgba(24, 35, 35, 0.5)), url(img/bg-image.png) center center no-repeat fixed;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+
+    #search-input {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      // background-color: #ffffff;
+      // margin: 1.375rem;
+      
+
+      form {
+        display: flex;
+        background-color: $color-white;
+        border-radius: 5.375rem;
+        justify-content: space-between;
+        margin: 0;
+        align-items: center;
+        // width: 100%;
+        // flex-grow: 1;
+
+        .searchIcon {
+          width: 2rem;
+          height: 2rem;
+          margin: 1rem 0.5rem 1rem 1.25rem;
+        }
+
+        .search-divider {
+          border: 1px solid $color-grey-lighter;
+          height: 1.4rem;
+          padding: 0rem;
+          margin: 0rem;
+        }
+      }
+    }
+  }
+
+  #result-image {
+    display: flex;
+    height: 50vh;
+    min-height: 40vh;
+    min-width: 100%;
+    background: url(img/result-image.png) no-repeat right center;
+    // background: linear-gradient(0deg, rgba(24, 35, 35, 0.5), rgba(24, 35, 35, 0.5)), url(img/result-image.png) center center no-repeat fixed;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 7.75rem 7.75rem;
+
+    #results-and-button {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(-50%);
+      align-items: center;
+      top: 43%;
+      left: 50%;
+
+      #result-card {
+        background-color: $color-white;
+        width: 47.125rem;
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+        box-shadow: 0px 4px 12px 0 rgba(0, 0, 0, 0.03);
+        
+  
+        #stats-primary {
+          display: flex;
+          align-items: center;
+          color: $color-black;
+
+          .stat {
+            padding: 0 0.5rem;
+            display: flex;
+            align-items: center;
+          }
+
+          .stat:first-of-type {
+            padding-left: 0;
+          }
+
+          .stats-icon {
+            padding-right: 0.5rem;
+          }
+        }
+
+        #stats-secondary {
+          color: $color-black;
+          display: flex;
+          justify-content: space-between;
+          margin-top: 2rem;
+
+          & div {
+            width: 30%;
+          }
+
+          .subtitle {
+            font-size: 1rem;
+            color: $color-grey-light;
+            margin-bottom: 0;
+          }
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
