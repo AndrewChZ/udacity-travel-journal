@@ -4,15 +4,55 @@
         <title>Travel Journal</title>
     </head>
     <body>
-        <div id="search-input">
-            <h2>Where’s your next adventure?</h2>
-            <form>
-                <img src="../img/icn_flight-arrive.png">
-                <input type="text"></input>
-                <input type="text"></input>
-                <input type="text"></input>
-                <input type="submit" value="Enter">
-            </form>
+
+        <!-- LANDING PAGE -->
+        <!-- <div id="bg-image">
+            <div id="search-input">
+                <h2>Where’s your next adventure?</h2>
+                <form>
+                    <img src="../img/icn_location.png" class="searchIcon">
+                    <input type="text" placeholder="Country"></input>
+                    <div class="search-divider"></div>
+                    <img src="../img/icn_flight-depart.png" class="searchIcon">
+                    <input type="text" placeholder="From"></input>
+                    <div class="search-divider"></div>
+                    <img src="../img/icn_flight-arrive.png" class="searchIcon">
+                    <input type="text" placeholder="To"></input>
+                    <input type="submit" value="Enter">
+                </form>
+            </div>
+        </div> -->
+
+
+        <!-- RESULTS PAGE -->
+        <div id="result-image">
+            <div id="results-and-button">
+                <div id="result-card">
+                    <h1>Bangkok</h1>
+                    <div id="stats-primary">
+                        <div class="stat"><img class="stats-icon" src="img/icn_flight-depart-black.png"> Trip starts in <b>24</b> days</div>
+                        <div class="stat-divider">·</div>
+                        <div class="stat"><img class="stats-icon" src="img/icn_weather-black.png"> Weather forecast is <b>Sunny</b></div>
+                    </div>
+                    <div id="stats-secondary">
+                        <div>
+                            <p class="subtitle">Departure date</p>
+                            <p>29 Sep 2019</p>
+                        </div>
+                        <div>
+                            <p class="subtitle">Arrival date</p>
+                            <p>29 Sep 2019</p>
+                        </div>
+                        <div>
+                            <p class="subtitle">Length of trip</p>
+                            <p>29 Sep 2019</p>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" id="check-button" value="Check another trip">
+            </div>
         </div>
+
+
     </body>
 </html>
