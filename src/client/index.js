@@ -1,5 +1,5 @@
 // import "./style.css";
-import "./style.scss";
+import "./style/style.scss";
 import bgImg from './img/bg-image.png'
 import resultsImg from './img/result-image.png'
 import icnFlightArrive from './img/icn_flight-arrive.png'
