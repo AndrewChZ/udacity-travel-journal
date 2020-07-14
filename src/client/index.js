@@ -1,5 +1,6 @@
 // import "./style.css";
 import "./style/style.scss";
+import { performAction } from './script/form-button.js'
 import bgImg from './img/bg-image.png'
 import resultsImg from './img/result-image.png'
 import icnFlightArrive from './img/icn_flight-arrive.png'
@@ -9,4 +10,6 @@ import icnLocation from './img/icn_location.png'
 import icnWeatherBlack from './img/icn_weather-black.png'
 console.log("Load successful");
 
-export { bgImg, icnFlightArrive, icnFlightDepart, icnLocation, icnFlightDepartBlack, icnWeatherBlack, resultsImg };
+export { bgImg, icnFlightArrive, icnFlightDepart, icnLocation, icnFlightDepartBlack, icnWeatherBlack, resultsImg, performAction };
+
+console.log("Load successful");
