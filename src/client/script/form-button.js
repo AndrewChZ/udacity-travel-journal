@@ -1,6 +1,10 @@
 document.getElementById("check-button").addEventListener('click', performAction);
 
 
+// let geoNamesBaseURL = `http://api.geonames.org/postalCodeSearch?placename=`,
+// let geoNamesLocation = `bangkok`,
+// let geoNamesRemainderURL = `&maxRows=10&username=andrewcccc`,
+
 function performAction() {
     event.preventDefault()
 
@@ -27,7 +31,12 @@ function performAction() {
 
 }
 
-
-
-
 export { performAction }
+
+// Example of postal code search URL
+
+// Search via place name (e.g. bangkok)
+// http://api.geonames.org/postalCodeSearch?placename=bangkok&maxRows=10&username=andrewcccc
+
+// Search via postal code
+// http://api.geonames.org/postalCodeSearch?postalcode=9011&maxRows=10&username=andrewcccc
