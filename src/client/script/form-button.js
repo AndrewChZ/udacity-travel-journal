@@ -76,7 +76,7 @@ function performAction(event) {
         console.log(data)
         console.log(`-------------------------`)
         console.log(`Output data as is:`)
-        console.log(data[0].name)
+        console.log(data.getElementsByTagName("name)[0])
     //   .then(
     //       updateUI()
     //   )
