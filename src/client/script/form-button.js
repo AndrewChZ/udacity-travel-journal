@@ -33,51 +33,32 @@ function performAction(event) {
     let geoNamesLocation = `bangkok`
     let geoNamesRemainderURL = `&maxRows=10&username=andrewcccc`
 
+
     // Acknowledgement for the API we are going to send
     console.log(`We are going to call API for url:
     ${geoNamesBaseURL}${geoNamesLocation}${geoNamesRemainderURL}`)
 
-    // Tried defining getData from the weather diary assignment
-    const getData = async () => {
-        const res = await fetch("http://api.geonames.org/postalCodeSearch?placename=bangkok&maxRows=10&username=andrewcccc")
+    const getData = async() => {
+        const response = await fetch("http://api.geonames.org/searchJSON?q=bangkok&maxRows=1&username=andrewcccc");
         try {
-            console.log("Fetching data")
-            const data = await res.text();
-            // console.log(data);
-            return data;
+            const data = await response.json();
+            console.log(`
+-----------------------------------------
+RETURNING FULL DATA
+-----------------------------------------`);
+            console.log(data);
+            console.log(`
+-----------------------------------------
+RETURNING LAT LONG ONLY
+-----------------------------------------`);
+            console.log(`Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`);
+            // return data;
         } catch(error) {
             console.log("error", error)
         }
     }
 
-    // Tried defining getData from the front end evaluation assignment
-    // async function getData(content) {
-    //     try {
-    //         const settings = {
-    //             method: 'POST', 
-    //             credentials: 'same-origin',
-    //             headers: {
-    //                 "Content-Type": "application/json;charset=utf-8",
-    //             },    
-    //         body: JSON.stringify({ text: content }), 
-    //         }; 
-    //     const res = await fetch(geoNamesBaseURL, geoNamesLocation, geoNamesRemainderURL);
-    //     return res;
-    //     } catch (error) {
-    //         console.log("An error has occured", error);
-    //     }
-    // }
-
-    getData(geoNamesBaseURL, geoNamesLocation, geoNamesRemainderURL)
-      .then(function(data) {
-        // console.log(`Check if data is JSON: ${JSON.parse(data)}`)
-        console.log(`-------------------------`)
-        console.log(`Output data as is:`)
-        console.log(data)
-    //   .then(
-    //       updateUI()
-    //   )
-      })
+    getData();
 }
 
 export { performAction }
@@ -89,3 +70,6 @@ export { performAction }
 
 // Search via postal code
 // http://api.geonames.org/postalCodeSearch?postalcode=9011&maxRows=10&username=andrewcccc
+
+// Search via JSON
+// http://api.geonames.org/searchJSON?q=bangkok&maxRows=1&username=andrewcccc
