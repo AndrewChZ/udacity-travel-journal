@@ -1,12 +1,16 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-
+  entry: './src/client/index.js',
+  mode: 'development',
+  devtool: 'source-map',
+  stats: 'verbose',
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.s[ac]ss$/,
         use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
@@ -22,12 +26,13 @@ module.exports = {
           name: '[path][name].[ext]'
         },
       },
+      
     ],
   },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "src", "index.html"),
-        collapseInlineTagWhitespace: false,
+        template: "./src/client/index.html",
+        filename: "./index.html",
       })
     ]
   };
