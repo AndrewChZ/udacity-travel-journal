@@ -27,31 +27,18 @@ app.listen(8080, function () {
 
 // -----------
 // IF USING REAL END POINTS
+app.post('/GeoNamesLatLong', async (req, res) => {
 
-app.get('/GeonamesLatLong', async (req, res) => {
+    // console.log(req);
+    console.log(`Printing req.body: ${req.body.city}`);
 
-    const response = await fetch("http://api.geonames.org/searchJSON?q=bangkok&maxRows=1&username=andrewcccc");
+
+    const response = await fetch(`http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=10&username=${process.env.USERNAME_GEONAMES}`);
     try {
         const data = await response.json();
-        console.log(data)
+        console.log(`Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`)
         res.send(data)
     } catch(error) {
         console.log("error", error)
     }
 })
-
-
-// -----------
-// IF USING DUMMY API END POINTS
-
-// Dummy API Endpoint
-// const fakeData = {
-//     animal: 'lion',
-//     fact: 'lions are fun'
-// }
-
-// app.get('/fakeAnimalData', getFakeData)
-
-// function getFakeData(req, res) {
-//     res.send(fakeData)
-// }
