@@ -11,28 +11,38 @@ function performAction(event) {
 
 
     // Acknowledgement for the API we are going to send
-    console.log(`We are going to call API for url:
-    ${geoNamesBaseURL}${geoNamesLocation}${geoNamesRemainderURL}`)
+    // console.log(`We are going to call API for url:
+    // ${geoNamesBaseURL}${geoNamesLocation}${geoNamesRemainderURL}`)
 
     const getData = async() => {
-        const response = await fetch("http://api.geonames.org/searchJSON?q=bangkok&maxRows=1&username=andrewcccc");
+        const response = await fetch ("/fakeAnimalData");
         try {
             const data = await response.json();
-            console.log(`
------------------------------------------
-RETURNING FULL DATA
------------------------------------------`);
             console.log(data);
-            console.log(`
------------------------------------------
-RETURNING LAT LONG ONLY
------------------------------------------`);
-            console.log(`Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`);
-            // return data;
         } catch(error) {
             console.log("error", error)
         }
     }
+
+//     const getData = async() => {
+//         const response = await fetch("http://api.geonames.org/searchJSON?q=bangkok&maxRows=1&username=andrewcccc");
+//         try {
+//             const data = await response.json();
+//             console.log(`
+// -----------------------------------------
+// RETURNING FULL DATA
+// -----------------------------------------`);
+//             console.log(data);
+//             console.log(`
+// -----------------------------------------
+// RETURNING LAT LONG ONLY
+// -----------------------------------------`);
+//             console.log(`Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`);
+//             // return data;
+//         } catch(error) {
+//             console.log("error", error)
+//         }
+//     }
 
     getData();
 }

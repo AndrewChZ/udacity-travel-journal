@@ -32,7 +32,7 @@ const fakeData = {
 app.get('/fakeAnimalData', getFakeData)
 
 function getFakeData(req, res) {
-res.send(fakeData)
+    res.send(fakeData)
 }
 
 
