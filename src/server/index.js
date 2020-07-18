@@ -42,3 +42,8 @@ app.post('/GeoNamesLatLong', async (req, res) => {
         console.log("error", error)
     }
 })
+
+// Weatherbit URL
+// https://api.weatherbit.io/v2.0/current?city=Raleigh,NC&key=ea0b6d4703b9426b89e488fb08a49a9e
+
+// https://api.weatherbit.io/v2.0/current?lat=13.75398&lon=100.50144&key=ea0b6d4703b9426b89e488fb08a49a9e
