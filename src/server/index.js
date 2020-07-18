@@ -4,6 +4,7 @@ var path = require('path');
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require("body-parser");
+const fetch = require("node-fetch")
 
 const app = express();
 
@@ -23,17 +24,21 @@ app.listen(8080, function () {
     console.log('Example app listening on port 8080!')
 })
 
-// Dummy API Endpoint
-const fakeData = {
-    animal: 'lion',
-    fact: 'lions are fun'
-}
 
-app.get('/fakeAnimalData', getFakeData)
+// -----------
+// IF USING REAL END POINTS
+app.post('/GeoNamesLatLong', async (req, res) => {
 
-function getFakeData(req, res) {
-res.send(fakeData)
-}
+    // console.log(req);
+    console.log(`Printing req.body: ${req.body.city}`);
 
 
-
+    const response = await fetch(`http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=10&username=${process.env.USERNAME_GEONAMES}`);
+    try {
+        const data = await response.json();
+        console.log(`Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`)
+        res.send(data)
+    } catch(error) {
+        console.log("error", error)
+    }
+})

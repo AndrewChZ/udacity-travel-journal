@@ -11,30 +11,30 @@ function performAction(event) {
 
 
     // Acknowledgement for the API we are going to send
-    console.log(`We are going to call API for url:
-    ${geoNamesBaseURL}${geoNamesLocation}${geoNamesRemainderURL}`)
+    // console.log(`We are going to call API for url:
+    // ${geoNamesBaseURL}${geoNamesLocation}${geoNamesRemainderURL}`)
 
-    const getData = async() => {
-        const response = await fetch("http://api.geonames.org/searchJSON?q=bangkok&maxRows=1&username=andrewcccc");
-        try {
-            const data = await response.json();
-            console.log(`
------------------------------------------
-RETURNING FULL DATA
------------------------------------------`);
-            console.log(data);
-            console.log(`
------------------------------------------
-RETURNING LAT LONG ONLY
------------------------------------------`);
-            console.log(`Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`);
-            // return data;
-        } catch(error) {
-            console.log("error", error)
-        }
+    // 2nd attempt - 
+    async function getData(url="", data = {}) {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
+        });
+        return response.json();
     }
 
-    getData();
+    getData('http://localhost:8080/GeoNamesLatLong', {city: geoNamesLocation})
+    .then(data => {
+        console.log(`${geoNamesLocation}: Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`)
+    });
+
 }
 
 function getCountry() {
@@ -42,14 +42,3 @@ function getCountry() {
 }
 
 export { performAction, getCountry }
-
-// Example of postal code search URL
-
-// Search via place name (e.g. bangkok)
-// http://api.geonames.org/postalCodeSearch?placename=bangkok&maxRows=10&username=andrewcccc
-
-// Search via postal code
-// http://api.geonames.org/postalCodeSearch?postalcode=9011&maxRows=10&username=andrewcccc
-
-// Search via JSON
-// http://api.geonames.org/searchJSON?q=bangkok&maxRows=1&username=andrewcccc
