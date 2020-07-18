@@ -15,7 +15,7 @@ function performAction(event) {
     // ${geoNamesBaseURL}${geoNamesLocation}${geoNamesRemainderURL}`)
 
     const getData = async() => {
-        const response = await fetch ("/fakeAnimalData");
+        const response = await fetch ("/GeonamesLatLong");
         try {
             const data = await response.json();
             console.log(data);
