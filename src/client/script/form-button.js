@@ -26,9 +26,15 @@ function performAction(event) {
 
     getData('http://localhost:8080/travel', {city: geoNamesLocation})
     .then(data => {
-        console.log(`${geoNamesLocation}: Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`)
-        geoNamesLat = data.geonames[0].lat;
-        geoNamesLong = data.geonames[0].lng;
+        console.log(`
+You're going to: ${geoNamesLocation},
+Lat: ${data.lat},
+Long: ${data.long}
+Temperature: ${data.temperature},
+Image: ${data.image}
+`)
+        // geoNamesLat = data.geonames[0].lat;
+        // geoNamesLong = data.geonames[0].lng;
     });
 
 }
