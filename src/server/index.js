@@ -27,31 +27,40 @@ app.listen(8080, function () {
 // Overall request
 app.post("/travel", async (req, res) => {
 
-
-    console.log(`Printing req.body: ${req.body.city}`);
-    // let city = req.body.city;
-
     const geonamesResult = await getGeonames(req.body.city)
     console.log(`---------------------------------`);
-    console.log(`Printing from overall /travel request`);
     console.log(`---------------------------------`);
-    console.log(`For GeoNames:`);
+    console.log(`Printing from overall /travel request`);
+    console.log(`-----------------`);
+    console.log(`The co-ordinates are:`);
     console.log(`Lat: ${geonamesResult.geonames[0].lat}, Long: ${geonamesResult.geonames[0].lng},`);
 
-    console.log(`
-.....fetching data for https://api.weatherbit.io/v2.0/current?lat=${geonamesResult.geonames[0].lat}&lon=${geonamesResult.geonames[0].lng}&key=${process.env.APP_ID_WEATHERBIT}
-`) 
+//     console.log(`
+// .....fetching data for https://api.weatherbit.io/v2.0/current?lat=${geonamesResult.geonames[0].lat}&lon=${geonamesResult.geonames[0].lng}&key=${process.env.APP_ID_WEATHERBIT}
+// `) 
 
     const weatherbitResult = await getWeatherbit(geonamesResult.geonames[0].lat, geonamesResult.geonames[0].lng)
 
-    console.log(`---------------------------------`);
-    console.log(`For WeatherBit:`);
-    // console.log(weatherbitResult[0].temp);
+    console.log(`-----------------`);
+    console.log(`The weather is:`);
     console.log(weatherbitResult.data[0].temp);
+    console.log(`-----------------`);
+
+    const pixabayResult = await getPixabay(req.body.city);
+
+    console.log(`Here's an image:`);
+    console.log(pixabayResult.hits[0].largeImageURL);
     console.log(`---------------------------------`);
-    // return geonamesResult;
+    console.log(`---------------------------------`);
+
+    let results = {
+        lat: geonamesResult.geonames[0].lat,
+        long: geonamesResult.geonames[0].lng,
+        temperature: weatherbitResult.data[0].temp,
+        image: pixabayResult.hits[0].largeImageURL,
+    }
     
-    res.send(geonamesResult);
+    res.send(results);
 })
 
 // GET request - geonames
@@ -78,15 +87,27 @@ const getWeatherbit = async(lat, long) => {
     try {
         const response = await fetch(urlWeatherbit);
         const data = await response.json();
-        // console.log(`---------------------------------`);
-        // console.log(`Printing from weatherbit GET request`);
-        // console.log(`${data.data[0].temp}`)
-        // console.log(`---------------------------------`);
         return data;
     } catch(error) {
         console.log("error", error)
     }
 };
+
+// GET request - Pixabay
+const getPixabay = async(city) => {
+    const urlPixabay = `https://pixabay.com/api/?key=${process.env.API_KEY_PIXABAY}&q=${city}&image_type=photo`;
+
+    try {
+        const response = await fetch(urlPixabay);
+        const data = await response.json();
+        // console.log(data.hits[0].largeImageURL);
+        return data;
+    } catch(error) {
+        console.log("error", error)
+    }
+};
+
+// https://pixabay.com/api/?key=17365757-742febfda330db7b37eefb539&q=bangkok&image_type=photo
 
 
 // Step 1. Getting GeoNames API
