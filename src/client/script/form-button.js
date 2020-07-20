@@ -5,16 +5,10 @@ document.getElementById("fetch-button").addEventListener('click', performAction)
 function performAction(event) {
     event.preventDefault()
 
-    let geoNamesBaseURL = `http://api.geonames.org/searchJSON?q=`
-    let geoNamesLocation = document.getElementById("country-field").value
-    let geoNamesRemainderURL = `&maxRows=10&username=andrewcccc`
+    let geoNamesLocation = document.getElementById("country-field").value;
+    let geoNamesLat;
+    let geoNamesLong;
 
-
-    // Acknowledgement for the API we are going to send
-    // console.log(`We are going to call API for url:
-    // ${geoNamesBaseURL}${geoNamesLocation}${geoNamesRemainderURL}`)
-
-    // 2nd attempt - 
     async function getData(url="", data = {}) {
         const response = await fetch(url, {
             method: 'POST',
@@ -30,9 +24,11 @@ function performAction(event) {
         return response.json();
     }
 
-    getData('http://localhost:8080/GeoNamesLatLong', {city: geoNamesLocation})
+    getData('http://localhost:8080/travel', {city: geoNamesLocation})
     .then(data => {
         console.log(`${geoNamesLocation}: Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`)
+        geoNamesLat = data.geonames[0].lat;
+        geoNamesLong = data.geonames[0].lng;
     });
 
 }
