@@ -54,6 +54,7 @@ app.post("/travel", async (req, res) => {
     console.log(`---------------------------------`);
 
     let results = {
+        city: req.body.city,
         lat: geonamesResult.geonames[0].lat,
         long: geonamesResult.geonames[0].lng,
         temperature: weatherbitResult.data[0].temp,
@@ -106,44 +107,3 @@ const getPixabay = async(city) => {
         console.log("error", error)
     }
 };
-
-// https://pixabay.com/api/?key=17365757-742febfda330db7b37eefb539&q=bangkok&image_type=photo
-
-
-// Step 1. Getting GeoNames API
-app.post('/GeoNamesLatLong', async (req, res) => {
-
-    // console.log(req);
-    console.log(`Printing req.body: ${req.body.city}`);
-
-
-    const response = await fetch(`http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=10&username=${process.env.USERNAME_GEONAMES}`);
-    try {
-        const data = await response.json();
-        console.log(`Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`)
-        res.send(data)
-    } catch(error) {
-        console.log("error", error)
-    }
-})
-
-// Step 2. Getting Weatherbit URL
-// https://api.weatherbit.io/v2.0/current?lat=13.75398&lon=100.50144&key=ea0b6d4703b9426b89e488fb08a49a9e
-
-app.post('/GetWeatherData', async (req, res) => {
-
-    // console.log(req);
-    console.log(`Lat: ${req.body.lat}, Long: ${req.body.long}`);
-
-
-    const response = await fetch(`https://api.weatherbit.io/v2.0/current?lat=${req.body.lat}&lon=${req.body.long}&key=${process.env.APP_ID_WEATHERBIT}`);
-    try {
-        const data = await response.json();
-        console.log(`Lat: ${data.geonames[0].lat}, Long: ${data.geonames[0].lng}`)
-        res.send(data)
-    } catch(error) {
-        console.log("error", error)
-    }
-})
-
-
