@@ -33,16 +33,46 @@ function performAction(event) {
         Temperature: ${data.temperature},
         Image: ${data.image}
         `);
-        createFragment(data);
+        displayReturnedInfo(data);
+        document.getElementById("check-button").addEventListener('click', displaySearchInput);
     });
 
     
 }
 
-function createFragment(data) {
+function displaySearchInput() {
+
+    let fragment = document.createDocumentFragment();
+    fragment=`
+<!-- LANDING PAGE -->
+<div id="bg-image">
+    <div id="search-input">
+        <h2>Where’s your next adventure?</h2>
+        <form>
+            <img src="../client/img/icn_location.png" class="searchIcon">
+            <input type="text" placeholder="Country" id="country-field"></input>
+            <div class="search-divider"></div>
+            <img src="../client/img/icn_flight-depart.png" class="searchIcon">
+            <input type="text" placeholder="From"></input>
+            <div class="search-divider"></div>
+            <img src="../client/img/icn_flight-arrive.png" class="searchIcon">
+            <input type="text" placeholder="To"></input>
+            <input type="submit" id="fetch-button" value="Enter">
+        </form>
+    </div>
+</div>
+    `
+    console.log('Changing back to search page')
+    document.querySelector('body').innerHTML = fragment;
+    document.getElementById("fetch-button").addEventListener('click', performAction);
+    console.log('Finished changing back to search page')
+}
+
+function displayReturnedInfo(data) {
 
     let fragment = document.createDocumentFragment();
     fragment = `
+<!-- RESULTS PAGE -->
 <div id="result-image">
     <div id="results-and-button">
         <div id="result-card">
