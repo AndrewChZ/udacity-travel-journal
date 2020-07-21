@@ -1,13 +1,27 @@
 document.getElementById("fetch-button").addEventListener('click', performAction);
 
 
-// Original PerformAction function that took returned test data
+
 function performAction(event) {
     event.preventDefault()
 
     let geoNamesLocation = document.getElementById("country-field").value;
-    let geoNamesLat;
-    let geoNamesLong;
+    let startDate = new Date(document.getElementById("startDate").value);
+    let startDateFormatted = startDate.toLocaleString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+    console.log(`You're flying off at ${startDateFormatted}`);
+    let endDate = new Date(document.getElementById("endDate").value);
+    let endDateFormatted = endDate.toLocaleString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+    console.log(`And coming back at ${endDateFormatted}`);
+    let lengthOfTrip = (endDate.getTime() - startDate.getTime())/(1000*3600*24);
+    console.log(`You'll be away for ${lengthOfTrip} days`)
 
     async function getData(url="", data = {}) {
         const response = await fetch(url, {
@@ -33,7 +47,7 @@ function performAction(event) {
         Temperature: ${data.temperature},
         Image: ${data.image}
         `);
-        displayReturnedInfo(data);
+        displayReturnedInfo(data, startDateFormatted, endDateFormatted, lengthOfTrip);
         document.getElementById("check-button").addEventListener('click', displaySearchInput);
     });
 
@@ -53,10 +67,10 @@ function displaySearchInput() {
             <input type="text" placeholder="Country" id="country-field"></input>
             <div class="search-divider"></div>
             <img src="../client/img/icn_flight-depart.png" class="searchIcon">
-            <input type="text" placeholder="From"></input>
+            <input type="date" placeholder="From"></input>
             <div class="search-divider"></div>
             <img src="../client/img/icn_flight-arrive.png" class="searchIcon">
-            <input type="text" placeholder="To"></input>
+            <input type="date" placeholder="To"></input>
             <input type="submit" id="fetch-button" value="Enter">
         </form>
     </div>
@@ -68,7 +82,7 @@ function displaySearchInput() {
     console.log('Finished changing back to search page')
 }
 
-function displayReturnedInfo(data) {
+function displayReturnedInfo(data, startDate, endDate, lengthOfTrip) {
 
     let fragment = document.createDocumentFragment();
     fragment = `
@@ -85,15 +99,15 @@ function displayReturnedInfo(data) {
             <div id="stats-secondary">
                 <div>
                     <p class="subtitle">Departure date</p>
-                    <p>29 Sep 2019</p>
+                    <p>${startDate}</p>
                 </div>
                 <div>
                     <p class="subtitle">Arrival date</p>
-                    <p>29 Sep 2019</p>
+                    <p>${endDate}</p>
                 </div>
                 <div>
                     <p class="subtitle">Length of trip</p>
-                    <p>29 Sep 2019</p>
+                    <p>${lengthOfTrip} days</p>
                 </div>
             </div>
         </div>
