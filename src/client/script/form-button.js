@@ -8,20 +8,19 @@ function performAction(event) {
     let geoNamesLocation = document.getElementById("country-field").value;
     let startDate = new Date(document.getElementById("startDate").value);
     let startDateFormatted = startDate.toLocaleString("en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric"
+        day: "numeric", month: "short", year: "numeric"
     });
     console.log(`You're flying off at ${startDateFormatted}`);
     let endDate = new Date(document.getElementById("endDate").value);
     let endDateFormatted = endDate.toLocaleString("en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric"
+        day: "numeric", month: "short", year: "numeric"
     });
     console.log(`And coming back at ${endDateFormatted}`);
     let lengthOfTrip = (endDate.getTime() - startDate.getTime())/(1000*3600*24);
     console.log(`You'll be away for ${lengthOfTrip} days`)
+    let todaysDate = new Date();
+    let daysTillTripStart = Math.floor((endDate.getTime() - todaysDate.getTime())/(1000*3600*24));
+    console.log(`Trip starts in ${daysTillTripStart} day`);
 
     async function getData(url="", data = {}) {
         const response = await fetch(url, {
@@ -47,7 +46,7 @@ function performAction(event) {
         Temperature: ${data.temperature},
         Image: ${data.image}
         `);
-        displayReturnedInfo(data, startDateFormatted, endDateFormatted, lengthOfTrip);
+        displayReturnedInfo(data, startDateFormatted, endDateFormatted, lengthOfTrip, daysTillTripStart);
         document.getElementById("check-button").addEventListener('click', displaySearchInput);
     });
 
@@ -67,10 +66,10 @@ function displaySearchInput() {
             <input type="text" placeholder="Country" id="country-field"></input>
             <div class="search-divider"></div>
             <img src="../client/img/icn_flight-depart.png" class="searchIcon">
-            <input type="date" placeholder="From"></input>
+            <input type="date" id="startDate" placeholder="From"></input>
             <div class="search-divider"></div>
             <img src="../client/img/icn_flight-arrive.png" class="searchIcon">
-            <input type="date" placeholder="To"></input>
+            <input type="date" id="endDate" placeholder="To"></input>
             <input type="submit" id="fetch-button" value="Enter">
         </form>
     </div>
@@ -82,7 +81,7 @@ function displaySearchInput() {
     console.log('Finished changing back to search page')
 }
 
-function displayReturnedInfo(data, startDate, endDate, lengthOfTrip) {
+function displayReturnedInfo(data, startDate, endDate, lengthOfTrip, daysTillTripStart) {
 
     let fragment = document.createDocumentFragment();
     fragment = `
@@ -92,7 +91,7 @@ function displayReturnedInfo(data, startDate, endDate, lengthOfTrip) {
         <div id="result-card">
             <h1>${data.city}</h1>
             <div id="stats-primary">
-                <div class="stat"><img class="stats-icon" src="../client/img/icn_flight-depart-black.png"> Trip starts in <b>24</b> days</div>
+                <div class="stat"><img class="stats-icon" src="../client/img/icn_flight-depart-black.png"> Trip starts in <b>${daysTillTripStart}</b> days</div>
                 <div class="stat-divider">·</div>
                 <div class="stat"><img class="stats-icon" src="../client/img/icn_weather-black.png"> Weather temperature is <b>${data.temperature}</b></div>
             </div>
