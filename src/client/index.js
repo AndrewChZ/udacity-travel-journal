@@ -1,8 +1,6 @@
-// import "./style.css";
 import "./style/style.scss";
 import { performAction } from './script/form-button.js'
 import bgImg from './img/bg-image.png'
-// import resultsImg from './img/result-image.png'
 import icnFlightArrive from './img/icn_flight-arrive.png'
 import icnFlightDepart from './img/icn_flight-depart.png'
 import icnFlightDepartBlack from './img/icn_flight-depart-black.png'
