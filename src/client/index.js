@@ -11,3 +11,13 @@ console.log("Load successful");
 export { bgImg, icnFlightArrive, icnFlightDepart, icnLocation, icnFlightDepartBlack, icnWeatherBlack, performAction };
 
 console.log("Load successful");
+
+if ('serviceWorker' in navigator) {
+   window.addEventListener('load', () => {
+     navigator.serviceWorker.register('/service-worker.js').then(registration => {
+       console.log('SW registered: ', registration);
+     }).catch(registrationError => {
+       console.log('SW registration failed: ', registrationError);
+     });
+   });
+ }
