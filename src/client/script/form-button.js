@@ -54,6 +54,33 @@ function performAction(event) {
 }
 
 function displaySearchInput() {
+    let bgImage;
+
+    async function getData(url="", data = {}) {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
+        });
+        return response.json();
+    }
+
+    getData('http://localhost:8080/bg-image')
+    .then(data => {
+        console.log(`
+        Image: ${data.image}
+        `);
+        console.log("Changing background image");
+        document.getElementById("bg-image").style.backgroundImage = `url(${data.image})`;
+        console.log(document.getElementById("bg-image").style.backgroundImage);
+        console.log("Changed");
+    });
 
     let fragment = document.createDocumentFragment();
     fragment=`
@@ -78,11 +105,16 @@ function displaySearchInput() {
     console.log('Changing back to search page')
     document.querySelector('body').innerHTML = fragment;
     document.getElementById("fetch-button").addEventListener('click', performAction);
+
+    console.log("Changing background image");
+    document.getElementById("bg-image").style.backgroundImage = `url(${bgImage})`;
+    console.log(document.getElementById("bg-image").style.backgroundImage);
+    console.log("Changed");
+
     console.log('Finished changing back to search page')
 }
 
 function displayReturnedInfo(data, startDate, endDate, lengthOfTrip, daysTillTripStart) {
-
     let fragment = document.createDocumentFragment();
     fragment = `
 <!-- RESULTS PAGE -->
