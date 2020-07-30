@@ -1,5 +1,5 @@
 document.getElementById("fetch-button").addEventListener('click', performAction);
-
+// document.getElementById("bg-image").addEventListener('load', consoleLog);
 
 
 function performAction(event) {
@@ -158,4 +158,4 @@ function getCountry() {
     let x = document.getElementById("country-field").value
 }
 
-export { performAction, getCountry }
+export { performAction, getCountry, displaySearchInput }
