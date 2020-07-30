@@ -35,10 +35,6 @@ app.post("/travel", async (req, res) => {
     console.log(`The co-ordinates are:`);
     console.log(`Lat: ${geonamesResult.geonames[0].lat}, Long: ${geonamesResult.geonames[0].lng},`);
 
-//     console.log(`
-// .....fetching data for https://api.weatherbit.io/v2.0/current?lat=${geonamesResult.geonames[0].lat}&lon=${geonamesResult.geonames[0].lng}&key=${process.env.APP_ID_WEATHERBIT}
-// `) 
-
     const weatherbitResult = await getWeatherbit(geonamesResult.geonames[0].lat, geonamesResult.geonames[0].lng)
 
     console.log(`-----------------`);
@@ -101,9 +97,32 @@ const getPixabay = async(city) => {
     try {
         const response = await fetch(urlPixabay);
         const data = await response.json();
-        // console.log(data.hits[0].largeImageURL);
         return data;
     } catch(error) {
         console.log("error", error)
     }
 };
+
+
+// Overall request
+app.post("/bg-image", async (req, res) => {
+
+    let cities = ["Canberra", "Vienna", "Yerevan", "Ottawa", "Kinshasa", "Zagreb", "Copenhagen", "Cairo", "Helsinki", "Paris", "Reykjavik", "Vientiane", "Wellington", "Bangkok", "Singapore", "Doha", "Honolulu", "Fiji"];
+
+    let citiesSelected = cities[Math.floor(Math.random() * cities.length)];
+
+    const pixabayResult = await getPixabay(citiesSelected);
+
+    console.log(`Here's an image:`);
+    console.log(pixabayResult.hits[0]);
+    console.log(pixabayResult.hits[0].largeImageURL);
+    console.log(`---------------------------------`);
+
+    let results = {
+        image: pixabayResult.hits[0].largeImageURL,
+    }
+    
+    res.send(results);
+})
+
+// Capitals to use: Canberra Vienna YEREVAN OTTAWA KINSHASA ZAGREB COPENHAGEN CAIRO HELSINKI PARIS REYKJAVIK VIENTIANE WELLINGTON Bangkok Singapore  Doha  honolulu fiji

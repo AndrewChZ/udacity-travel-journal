@@ -1,5 +1,5 @@
 document.getElementById("fetch-button").addEventListener('click', performAction);
-
+// document.getElementById("bg-image").addEventListener('load', consoleLog);
 
 
 function performAction(event) {
@@ -54,6 +54,34 @@ function performAction(event) {
 }
 
 function displaySearchInput() {
+    let bgImage;
+
+    async function getData(url="", data = {}) {
+        const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            redirect: 'follow',
+            body: JSON.stringify(data)
+        });
+        return response.json();
+    }
+
+    getData('http://localhost:8080/bg-image')
+    .then(data => {
+        console.log(`
+        Image: ${data.image}
+        `);
+        console.log("Changing background image");
+        // BUG, FIX ME: to add in shadows to the BG-image by adding in "linear-gradient(0deg, rgba(24, 35, 35, 0.5), rgba(24, 35, 35, 0.5)),"
+        document.getElementById("bg-image").style.backgroundImage = `url(${data.image}`;
+        console.log(document.getElementById("bg-image").style.backgroundImage);
+        console.log("Changed");
+    });
 
     let fragment = document.createDocumentFragment();
     fragment=`
@@ -78,11 +106,18 @@ function displaySearchInput() {
     console.log('Changing back to search page')
     document.querySelector('body').innerHTML = fragment;
     document.getElementById("fetch-button").addEventListener('click', performAction);
+
+    // console.log("Changing background image");
+    // document.getElementById("bg-image").style.backgroundImage = `url(${bgImage})`;
+    // document.getElementById("bg-image").style.backgroundImage = `linear-gradient(0deg, rgba(24, 35, 35, 0.5), rgba(24, 35, 35, 0.5)), url(${bgImage}) center center no-repeat fixed;`;
+    // document.getElementById("bg-image").style.backgroundImage = `linear-gradient(0deg, rgba(24, 35, 35, 0.5), rgba(24, 35, 35, 0.5))`;
+    // console.log(document.getElementById("bg-image").style.backgroundImage);
+    // console.log("Changed");
+
     console.log('Finished changing back to search page')
 }
 
 function displayReturnedInfo(data, startDate, endDate, lengthOfTrip, daysTillTripStart) {
-
     let fragment = document.createDocumentFragment();
     fragment = `
 <!-- RESULTS PAGE -->
@@ -126,4 +161,4 @@ function getCountry() {
     let x = document.getElementById("country-field").value
 }
 
-export { performAction, getCountry }
+export { performAction, getCountry, displaySearchInput }
