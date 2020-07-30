@@ -77,7 +77,8 @@ function displaySearchInput() {
         Image: ${data.image}
         `);
         console.log("Changing background image");
-        document.getElementById("bg-image").style.backgroundImage = `url(${data.image})`;
+        // BUG, FIX ME: to add in shadows to the BG-image by adding in "linear-gradient(0deg, rgba(24, 35, 35, 0.5), rgba(24, 35, 35, 0.5)),"
+        document.getElementById("bg-image").style.backgroundImage = `url(${data.image}`;
         console.log(document.getElementById("bg-image").style.backgroundImage);
         console.log("Changed");
     });
@@ -106,10 +107,12 @@ function displaySearchInput() {
     document.querySelector('body').innerHTML = fragment;
     document.getElementById("fetch-button").addEventListener('click', performAction);
 
-    console.log("Changing background image");
-    document.getElementById("bg-image").style.backgroundImage = `url(${bgImage})`;
-    console.log(document.getElementById("bg-image").style.backgroundImage);
-    console.log("Changed");
+    // console.log("Changing background image");
+    // document.getElementById("bg-image").style.backgroundImage = `url(${bgImage})`;
+    // document.getElementById("bg-image").style.backgroundImage = `linear-gradient(0deg, rgba(24, 35, 35, 0.5), rgba(24, 35, 35, 0.5)), url(${bgImage}) center center no-repeat fixed;`;
+    // document.getElementById("bg-image").style.backgroundImage = `linear-gradient(0deg, rgba(24, 35, 35, 0.5), rgba(24, 35, 35, 0.5))`;
+    // console.log(document.getElementById("bg-image").style.backgroundImage);
+    // console.log("Changed");
 
     console.log('Finished changing back to search page')
 }

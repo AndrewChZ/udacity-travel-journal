@@ -12,11 +12,6 @@ export { icnFlightArrive, icnFlightDepart, icnLocation, icnFlightDepartBlack, ic
 
 console.log("Load successful");
 
-// document.getElementById("bg-image").addEventListener('load', () => {
-//   console.log("bg-image is loaded successfully!");
-// });
-
-
 window.addEventListener('load', displaySearchInput);
 
 if ('serviceWorker' in navigator) {
