@@ -1,4 +1,5 @@
 document.getElementById("fetch-button").addEventListener('click', performAction);
+import { getCountry } from './getCountry';
 // document.getElementById("bg-image").addEventListener('load', consoleLog);
 
 
@@ -157,8 +158,8 @@ function displayReturnedInfo(data, startDate, endDate, lengthOfTrip, daysTillTri
     console.log("Changed");
 }
 
-function getCountry() {
-    let x = document.getElementById("country-field").value
-}
+// function getCountry() {
+//     let x = document.getElementById("country-field").value
+// }
 
 export { performAction, getCountry, displaySearchInput }
