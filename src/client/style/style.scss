@@ -228,13 +228,12 @@ body {
 /* Tablet */
 
 @media only screen and (max-width: 1024px) {
-  #search-input {
-    max-width: 85%;
-  }
 
   body {
     #bg-image {
       #search-input {
+        // max-width: 85%;
+
         form {
           border-radius: 1rem;
           grid-template-areas: 
@@ -247,16 +246,23 @@ body {
         }
       }
     }
+
+    // Result-image max-width does not work
+    // #result-image {
+    //   #results-and-button {
+    //     #result-card {
+    //       max-width: 75%;
+    //       background-color: red;
+    //     }
+    //   }
+    // }
   }
 } 
+
 
 /* Mobile */
 
 @media only screen and (max-width: 640px) {
-  #search-input {
-    max-width: 85%;
-  }
-
   body {
     #bg-image {
       #search-input {
@@ -268,7 +274,7 @@ body {
                 "arrival"
                 "button";
           grid-template-rows: repeat(4, 2.5rem);
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: 1fr;
           row-gap: 1.5rem;
         }
       }
