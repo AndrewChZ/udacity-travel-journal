@@ -11,15 +11,23 @@
             <div id="search-input">
                 <h2>Where’s your next adventure?</h2>
                 <form>
-                    <img src="../client/img/icn_location.png" class="searchIcon">
-                    <input type="text" placeholder="Country" id="country-field"></input>
-                    <div class="search-divider"></div>
-                    <img src="../client/img/icn_flight-depart.png" class="searchIcon">
-                    <input type="date" id="startDate" placeholder="From"></input>
-                    <div class="search-divider"></div>
-                    <img src="../client/img/icn_flight-arrive.png" class="searchIcon">
-                    <input type="date" id="endDate" placeholder="To"></input>
-                    <input type="submit" id="fetch-button" value="Enter">
+                    <div id="form-country">
+                        <img src="../client/img/icn_location.png" class="searchIcon">
+                        <input type="text" placeholder="Country" id="country-field"></input>
+                    </div>
+                    <!-- <div class="search-divider"></div> -->
+                    <div id="form-depart">
+                        <img src="../client/img/icn_flight-depart.png" class="searchIcon">
+                        <input type="date" id="startDate" placeholder="From"></input>
+                    </div>
+                    <!-- <div class="search-divider"></div> -->
+                    <div id="form-arrive">
+                        <img src="../client/img/icn_flight-arrive.png" class="searchIcon">
+                        <input type="date" id="endDate" placeholder="To"></input>
+                    </div>
+                    <div id="form-button">
+                        <input type="submit" id="fetch-button" value="Enter">
+                    </div>
                 </form>
             </div>
         </div>
