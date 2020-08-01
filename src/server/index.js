@@ -15,24 +15,8 @@ app.use(express.static('dist'))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// --------------------------------------------
-// Imported from "app.js"
-// const express = require('express');
-// const app = express();
-// app.get('/', function (req, res) {
-//     res.sendFile('dist/index.html')
-// })
-// --------------------------------------------
 
-// --------------------------------------------
-// Imported from "server.js"
-// designates what port the app will listen to for incoming requests
-// app.listen(8080, function () {
-//     console.log('Example app listening on port 8080!')
-// })
-// --------------------------------------------
-
-// Overall request
+// Overall request to get lat long, image, temperature
 app.post("/travel", async (req, res) => {
 
     const geonamesResult = await getGeonames(req.body.city)
@@ -112,7 +96,7 @@ const getPixabay = async(city) => {
 };
 
 
-// Overall request
+// Randomly generates a background image for the front page from one of these cities in the list
 app.post("/bg-image", async (req, res) => {
 
     let cities = ["Canberra", "Vienna", "Yerevan", "Ottawa", "Kinshasa", "Zagreb", "Copenhagen", "Cairo", "Helsinki", "Paris", "Reykjavik", "Vientiane", "Wellington", "Bangkok", "Singapore", "Doha", "Honolulu", "Fiji"];
@@ -132,5 +116,3 @@ app.post("/bg-image", async (req, res) => {
     
     res.send(results);
 })
-
-// Capitals to use: Canberra Vienna YEREVAN OTTAWA KINSHASA ZAGREB COPENHAGEN CAIRO HELSINKI PARIS REYKJAVIK VIENTIANE WELLINGTON Bangkok Singapore  Doha  honolulu fiji
