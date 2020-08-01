@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', function (req, res) {
-    res.status(200).send("Hello world!")
+    res.sendFile('index.html', { root: 'dist' })
 })
 
 module.exports = app;
